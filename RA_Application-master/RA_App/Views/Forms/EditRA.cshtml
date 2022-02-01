@@ -1,0 +1,119 @@
+﻿@model RA_App.Models.Form
+
+@{
+    ViewBag.Title = "EditRA";
+}
+
+<h2>Add RA Feedback</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Res_ID)
+        @Html.HiddenFor(model => model.Report_ID)
+        @Html.HiddenFor(model => model.Action_ID)
+
+        @Html.HiddenFor(model => model.ContactNo)
+        @Html.HiddenFor(model => model.Dateof_II)
+        @Html.HiddenFor(model => model.DateReported_II)
+        @Html.HiddenFor(model => model.Details_II)
+        @Html.HiddenFor(model => model.Emp_Name)
+        @Html.HiddenFor(model => model.Recommendations)
+        @Html.HiddenFor(model => model.StudentFeedBack)
+        @Html.HiddenFor(model => model.StudentRating)
+        @Html.HiddenFor(model => model.StudName)
+        @Html.HiddenFor(model => model.StudNo)
+        @Html.HiddenFor(model => model.StudSurname)
+        @Html.HiddenFor(model => model.TOR)
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.YOS)
+        @Html.HiddenFor(model => model.NatureOf_II)
+        @Html.HiddenFor(model => model.ActionsTaken)
+        @Html.HiddenFor(model => model.ApplicationUser)
+        @Html.HiddenFor(model => model.NOKContactNo)
+        @Html.HiddenFor(model => model.Status)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RAFeedback, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.RAFeedback, 10, 120, htmlAttributes: new { style = "width: 60%; max-width: 60%;" })
+
+                @Html.ValidationMessageFor(model => model.RAFeedback, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RARating, htmlAttributes: new { @class = "control-label col-md-2" })          
+            <div class="col-md-10">             
+                @Html.DropDownListFor(model => model.RARating, new List<SelectListItem>
+    {
+    new SelectListItem{ Text="1", Value = "1" },
+    new SelectListItem{ Text="2", Value = "2" },
+    new SelectListItem{ Text="3", Value = "3" },
+    new SelectListItem{ Text="4", Value = "4" },
+    new SelectListItem{ Text="5", Value = "5" }
+
+    })
+                @Html.ValidationMessageFor(model => model.RARating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.StudNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StudNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Emp_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Emp_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Emp_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@if (User.IsInRole("RA"))
+{
+    <div>
+        @Html.ActionLink("Back to List", "MyIndex")
+    </div>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

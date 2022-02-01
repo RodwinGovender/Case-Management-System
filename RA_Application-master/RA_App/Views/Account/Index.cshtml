@@ -1,0 +1,62 @@
+﻿@model IEnumerable<RA_App.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    @if (User.IsInRole("Admin"))
+
+    {
+<h2>List of Users</h2>
+
+<p>
+    @Html.ActionLink("Add New User", "Register")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_IDNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_ContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_IDNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_ContactNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>*@
+        </tr>
+    }
+
+</table>
+    }

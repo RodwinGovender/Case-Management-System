@@ -1,0 +1,119 @@
+﻿@model IEnumerable<RA_App.Models.Form>
+
+@{
+    ViewBag.Title = "List of Forms";
+}
+
+<h2>All Submited Forms</h2>
+
+@*<p>
+    @Html.ActionLink("Add New Form", "Create")
+</p>*@
+
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <b>Search By:</b>
+        @Html.RadioButton("searchBy", "Pending", true) <text>Pending</text>
+        @Html.RadioButton("searchBy", "Received") <text>Received</text>
+        @Html.RadioButton("searchBy", "Declined") <text>Declined</text>
+        @Html.RadioButton("searchBy", "All") <text>All</text>
+
+
+        <br />
+
+        @Html.TextBox("search") <input type="submit" value="Search by Student No" />
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureOf_II)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dateof_II)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReported_II)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Name)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TOR)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudSurname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NatureOf_II)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Dateof_II)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateReported_II)
+    </td>
+    
+    <td>
+        @Html.DisplayFor(modelItem => item.Emp_Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+
+        @Html.ActionLink("Details", "Details", new { id = item.ID })<a>|</a>
+        @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Change Status", "ChangeStatus", new { id = item.ID })<a>|</a>
+        }
+
+        @if (item.Status == "Received"||item.Status == "Declined")
+        {
+            @*@Html.ActionLink("Edit Student Feedback", "EditStudent", new { id = item.ID })<a>|</a>
+            @Html.ActionLink("Edit RA Feedback", "EditRA", new { id = item.ID })<a>|</a>*@
+            @Html.ActionLink("Add Feedback", "EditStudent", new { id = item.ID })<a>|</a>
+            @Html.ActionLink("View Feedback", "FeedbackDetails", new { id = item.ID })<a>|</a>
+
+            @*<a href='@Url.Action("EditStudent", "Forms", new { id = item.ID }, null)' class="btn btn-primary">Edit Student Feedback</a>
+            <a href='@Url.Action("EditRA", "Forms", new { id = item.ID }, null)' class="btn btn-primary">Edit RA Feedback</a>
+            <a href='@Url.Action("FeedbackDetails", "Forms", new { id = item.ID }, null)' class="btn btn-primary">View Feedback</a>
+            *@
+        }
+    </td>
+</tr>
+}
+
+</table>

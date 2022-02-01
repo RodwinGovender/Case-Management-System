@@ -1,0 +1,70 @@
+﻿@model RA_App.Models.Form
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    
+    <h2>ChangeStatus</h2>
+
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.Res_ID)
+    @Html.HiddenFor(model => model.Report_ID)
+    @Html.HiddenFor(model => model.Action_ID)
+
+    @Html.HiddenFor(model => model.ContactNo)
+    @Html.HiddenFor(model => model.Dateof_II)
+    @Html.HiddenFor(model => model.DateReported_II)
+    @Html.HiddenFor(model => model.Details_II)
+    @Html.HiddenFor(model => model.Emp_Name)
+    @Html.HiddenFor(model => model.Recommendations)
+    @*@Html.HiddenFor(model => model.StudentFeedBack)
+        @Html.HiddenFor(model => model.StudentRating)*@
+    @Html.HiddenFor(model => model.StudName)
+    @Html.HiddenFor(model => model.StudNo)
+    @Html.HiddenFor(model => model.StudSurname)
+    @Html.HiddenFor(model => model.TOR)
+    @Html.HiddenFor(model => model.UserName)
+    @Html.HiddenFor(model => model.YOS)
+    @Html.HiddenFor(model => model.NatureOf_II)
+    @Html.HiddenFor(model => model.ActionsTaken)
+    @Html.HiddenFor(model => model.ApplicationUser)
+    @Html.HiddenFor(model => model.NOKContactNo)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
+    {
+    new SelectListItem{ Text="Pending", Value = "Pending" },
+    new SelectListItem{ Text="Received", Value = "Received" },
+    new SelectListItem{ Text="Declined", Value = "Declined" },
+
+    })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,272 @@
+﻿@model RA_App.Models.Form
+
+@{
+    ViewBag.Title = "New Report";
+}
+
+<h2>New Report</h2>
+<style>
+
+
+    textarea {
+        overflow-y: scroll;
+        height: 100px;
+        resize: none;
+    }
+</style>
+
+
+
+
+<link href="~/Content/themes/base/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Res_ID, "Residence Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Res_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Res_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    @*<div>
+        <text> <span style="color:red;">@ViewBag.ErrorName </span> </text>
+
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReportType.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Report_ID)
+            @Html.EditorFor(model => model.ReportType.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <text> <span style="color:red;">@ViewBag.ErrorName </span> </text>
+        </div>
+    </div>
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.TOR, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(m => m.TOR, "Incident") <text><b>Incident</b></text> <br />
+                @Html.RadioButtonFor(m => m.TOR, "Illness") <text><b>Illness</b></text>
+                @Html.ValidationMessageFor(model => model.TOR, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Report_ID, "Illness Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Illn", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Report_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Report_ID, "Incident Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Inci", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Report_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.TOR, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TOR, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TOR, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StudName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StudName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StudName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StudSurname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StudSurname, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StudSurname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StudNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StudNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StudNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.YOS, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.YOS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.YOS, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.YOS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.YOS, new List<SelectListItem>
+{
+new SelectListItem{ Text="1", Value = "1" },
+new SelectListItem{ Text="2", Value = "2" },
+new SelectListItem{ Text="3", Value = "3" },
+new SelectListItem{ Text="4", Value = "4" },
+new SelectListItem{ Text="5", Value = "5" },
+
+})
+            @Html.ValidationMessageFor(model => model.YOS, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NOKContactNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NOKContactNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NOKContactNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.NatureOf_II, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NatureOf_II, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NatureOf_II, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dateof_II, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Dateof_II, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dateof_II, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateReported_II, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateReported_II, new { htmlAttributes = new { @class = "form-control" } })
+            <text> <span style="color:red;"> @ViewBag.ErrorDate </span> </text>
+        </div>
+    </div>
+
+
+    @*<div>
+        <text> <span style="color:red;"> @ViewBag.ErrorDate </span> </text>
+
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Details_II, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-lg-10">
+            @Html.TextAreaFor(model => model.Details_II, 10, 120, htmlAttributes: new { style = "width: 60%; max-width: 60%;" })
+            @*@Html.EditorFor(model => model.Details_II, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.Details_II, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ActionsTaken, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ActionsTaken, 10, 120, htmlAttributes: new { style = "width: 60%; max-width: 60%;" })
+
+                @Html.ValidationMessageFor(model => model.ActionsTaken, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Action_ID, "Action Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Action_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Action_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Recommendations, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Recommendations, 10, 120, htmlAttributes: new { style = "width: 60%; max-width: 60%;" })
+            @Html.ValidationMessageFor(model => model.Recommendations, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @Html.HiddenFor(m => m.Status, new { Value = "Pending" })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ReportType_Name').autocomplete({
+            source: '/Forms/getTOR',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#Report_ID").val(ui.item.id);
+
+                //Tags for display
+                this.value = ui.item.value;
+                return false;
+            }
+        });
+    });
+</script>
+
+}
