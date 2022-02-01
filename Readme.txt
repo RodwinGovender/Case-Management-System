@@ -1,5 +1,4 @@
-Use these as login accounts, if the RA's acounts dont work, login wiht Admin account and 
-add each users (RA's to the system). 
+Use these as login accounts:
 
 
 
